@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+
+<h1>Blogg</h1>
+
+<div class="blog-container">
+    {% for blog in blogs %}
+        <div class="blog-post">
+            <h4 class="blog-title">{{ blog.title }}</h4>
+            <p class="blog-meta">
+                <span><strong>Flokkur:</strong> {{ blog.genre }}</span>
+                <span><strong>Höfundur:</strong> {{ blog.author }}</span>
+            </p>
+            <div class="blog-content">
+                {{ blog.content | safe }}
+            </div>
+            {% if 'admin' in session %}
+                <div class="blog-actions">
+                    <a href="{{ url_for('edit_blog', blog_id=loop.index0) }}" class="btn-edit">Breyta</a>
+                    <form action="{{ url_for('delete_blog', blog_id=loop.index0) }}" method="POST" class="delete-form">
+                        <button type="submit" class="btn-delete" >Eyða</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

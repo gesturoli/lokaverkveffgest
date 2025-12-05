@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% set message = get_flashed_messages() %}
+    {{ message[0] if message else "" }}
+
+    <div class="login-form">
+        <h2>Login</h2>
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="email" id="username" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" value="Login">Login</button>
+        </form>
+    </div>
+
+
+{% endblock %}
+
+

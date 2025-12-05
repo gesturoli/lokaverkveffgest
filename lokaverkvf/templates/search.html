@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Search results for "{{ query }}"</h1>
+
+{% if items %}
+<div class="item-grid">
+    {% for item in items %}
+    <div class="item-box">
+        <a href="{{ url_for('item_page', genre=item.genre, item_id=item.id) }}">
+            {% if item.image %}
+            <img class="item-img" src="{{ item.image }}" alt="{{ item.name }}">
+            {% endif %}
+            <p class="item-name">{{ item.name }}</p>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No results found.</p>
+{% endif %}
+
+{% endblock %}
+
+

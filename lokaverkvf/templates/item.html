@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="{{ url_for('index') }}">⬅ Back</a>
+
+<h1>{{ item.name }}</h1>
+<div class="big_mynd">
+    <img src="{{ item.image }}" alt="{{ item.name }}" class="detail-img">
+</div>
+<div class="item-info">
+    {% for key, value in item.items() %}
+        <p><strong>{{ key|capitalize }}:</strong> {{ value }}</p>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

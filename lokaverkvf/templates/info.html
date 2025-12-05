@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set message = get_flashed_messages() %}
+{{ message[0] if message else "" }}
+
+<h1 class="item-grid">{{ genre|capitalize }}</h1>
+<div class="pagination">
+    {% if page > 0 %}
+        <a class="page-btnl" href="{{ url_for('info', genre=genre, page=page-1) }}"> < Fyrri</a>
+    {% endif %}
+    <br>
+    <a class="page-btnr" href="{{ url_for('info', genre=genre, page=page+1) }}">Næsta ></a>
+</div>
+
+<div class="item-grid">
+    {% for item in items %}
+    <div class="item-box">
+        <a href="{{ url_for('item_page', genre=genre, item_id=item.id) }}">
+            {% if item.image %}
+            <img src="{{ item.image }}" alt="{{ item.name }}" class="item-img">
+            {% endif %}
+            <p class="item-name">{{ item.name }}</p>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+  
+
+{% endblock %}
+

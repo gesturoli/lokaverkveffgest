@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% set message = get_flashed_messages() %}
+    {{ message[0] if message else "" }}
+    
+    <br><br>    
+    <h1 class="item-grid">hlutir af handahófi</h1>
+
+
+
+
+<div class="item-grid">
+    {% for item in items %}
+        <div class="item-box">
+            <a href="{{ url_for('item_page', genre=genre, item_id=item.get('id') ) }}">
+                <img src="{{ item['image'] }}" alt="{{ item['name'] }}" class="item-img">
+                <p class="item-name">{{ item['name'] }}</p>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+<div class="nav-container">
+  <div class="nav-links">
+    <a href="{{ url_for('blogg') }}">Blogg</a>
+    <a href="{{ url_for('index') }}">Forsíða</a>
+    {% if 'admin' not in session %}
+      <a href="{{ url_for('login') }}">Innskráning</a>  
+    {% endif %} 
+    {% if 'admin' in session %}
+      <a href="{{ url_for('logout') }}">Útskráning</a>
+      <a href="{{ url_for('admin') }}">Admin</a>
+    {% endif %}
+  </div>
+
+  <div class="search-container">
+    <form action="{{ url_for('search') }}" method="GET" class="search-bar">
+      <input type="text" name="q" placeholder="Search..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="categories-container">
+    <h3>Flokkar</h3>
+    <form action="{{ url_for('info') }}" method="GET">
+      <select name="genre" id="genre" onchange="this.form.submit()">
+        <option value="">Veldu Flokk</option>
+        <option value="weapons">Weapons</option>
+        <option value="armors">Armors</option>
+        <option value="shields">Shields</option>
+        <option value="ashes">Ashes of War</option>
+        <option value="talismans">Talismans</option>
+        <option value="incantations">Incantations</option>
+        <option value="sorceries">Sorceries</option>
+        <option value="items">Items</option>
+        <option value="ammos">Ammos</option>
+        <option value="classes">Classes</option>
+        <option value="npcs">NPCs</option>
+        <option value="bosses">Bosses</option>
+        <option value="creatures">Creatures</option>
+        <option value="locations">Locations</option>
+      </select>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
